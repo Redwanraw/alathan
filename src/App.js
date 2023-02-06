@@ -18,7 +18,7 @@ const name = par.map((name1) =>
   //getPrayers("Riyadh")
 //}
 
-
+console.log(getPrayers())
 function getPrayers(cityName){
     const params = {
   country:"SA",
@@ -26,22 +26,20 @@ function getPrayers(cityName){
   }
 axios.get('http://api.aladhan.com/v1/timingsByCity/:date_or_timestamp',{
       params : params
-})
-
-  .then(function althan (response) {
+}).then(function althan (response) {
     // handle success
     const taemsla = response.data.data.timings
     const month = response.data.data.date.hijri.month.ar
     const tareh = response.data.data.date.hijri.date
     const day = response.data.data.date.hijri.weekday.ar
-
+console.log(taemsla.Fajr)
     document.getElementById("tareh").innerHTML = day + " " + month +" "+ tareh
     document.getElementById("Fajr").innerHTML = taemsla.Fajr
     document.getElementById("Dhuhr").innerHTML = taemsla.Dhuhr
     document.getElementById("Asr").innerHTML = taemsla.Asr
     document.getElementById("Maghrib").innerHTML = taemsla.Maghrib
     document.getElementById("Isha").innerHTML = taemsla.Isha
- console.log(taemsla)
+ 
 })
   .catch(function (error) {
     // handle error
