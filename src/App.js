@@ -41,7 +41,8 @@ axios.get('http://api.aladhan.com/v1/timingsByCity/:date_or_timestamp',{
     document.getElementById("Asr").innerHTML = taemsla.Asr
     document.getElementById("Maghrib").innerHTML = taemsla.Maghrib
     document.getElementById("Isha").innerHTML = taemsla.Isha
-  })
+ console.log(taemsla)
+})
   .catch(function (error) {
     // handle error
     console.log(error);
