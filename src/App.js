@@ -18,36 +18,34 @@ const name = par.map((name1) =>
   //getPrayers("Riyadh")
 //}
 
-console.log(getPrayers())
-function getPrayers(cityName){
+
+const [cityName1, setcityName1] = useState("Makkah")
     const params = {
   country:"SA",
-  city:cityName
+  city:cityName1
   }
 axios.get('http://api.aladhan.com/v1/timingsByCity/:date_or_timestamp',{
       params : params
-}).then(function althan (response) {
+})
+
+  .then(function althan (response) {
     // handle success
     const taemsla = response.data.data.timings
     const month = response.data.data.date.hijri.month.ar
     const tareh = response.data.data.date.hijri.date
     const day = response.data.data.date.hijri.weekday.ar
-console.log(taemsla.Fajr)
+
     document.getElementById("tareh").innerHTML = day + " " + month +" "+ tareh
     document.getElementById("Fajr").innerHTML = taemsla.Fajr
     document.getElementById("Dhuhr").innerHTML = taemsla.Dhuhr
     document.getElementById("Asr").innerHTML = taemsla.Asr
     document.getElementById("Maghrib").innerHTML = taemsla.Maghrib
     document.getElementById("Isha").innerHTML = taemsla.Isha
- 
-})
+  })
   .catch(function (error) {
     // handle error
     console.log(error);
-  })
-
- 
-}
+  });
 
 const [namecity, setnamecity] = useState('مكة المكرمة')
 
@@ -58,7 +56,7 @@ return (
 
 <h1 className='mt-5'>  {namecity} </h1>
 <h5 id='tareh' className='mt-3'></h5>
-<h6> اوقات الصلاة في  {namecity}</h6>
+<h6 > اوقات الصلاة في  {namecity}</h6>
 </div>
 <hr/>
 <div className=" row row-cols-1 row-cols-md-5 me-1">
@@ -117,16 +115,16 @@ return (
 <div id='cities-select' className=" input-group text-center ">
   <select key={name.toString} onChange={(then)=>{
     if (then.target.value == "Makkah") {
-      getPrayers("Makkah")
+      setcityName1("Makkah")
       setnamecity('مكة المكرمة')
     }
     if(then.target.value == "Riyadh"){
-      getPrayers("Riyadh")
+      setcityName1("Riyadh")
       setnamecity('الرياض ')
 
     }
     if (then.target.value == "Jaddah") {
-            getPrayers("Jaddah")
+            setcityName1("Jaddah")
             setnamecity('جدة ')
 
     }
